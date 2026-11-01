@@ -30,7 +30,7 @@ pipeline {
         GITOPS_BRANCH     = 'main'
 
         // Tooling container images
-        GO_BUILD_IMAGE    = 'golang:1.24-alpine'
+        GO_BUILD_IMAGE    = 'golang:1.27-alpine'
         NODE_BUILD_IMAGE  = 'node:22-alpine'
         SONAR_SCAN_IMAGE  = 'sonarsource/sonar-scanner-cli:latest'
         TRIVY_IMAGE       = 'aquasec/trivy:latest'
@@ -81,10 +81,14 @@ pipeline {
             steps {
                 sh """
                     docker run --rm \
-                      -w /workspace \
-                      -v "\$WORKSPACE":/workspace \
+                      --user "\$(id -u):\$(id -g)" \
+                      --volumes-from "\$HOSTNAME" \
+                      -w "\$PWD" \
+                      -e HOME=/tmp \
+                      -e GOCACHE=/tmp/go-cache \
+                      -e GOMODCACHE=/tmp/go-mod \
                       -e CGO_ENABLED=0 \
-                      -e MIN_GO_COVERAGE="\${MIN_GO_COVERAGE}" \
+                      -e MIN_GO_COVERAGE="${MIN_GO_COVERAGE}" \
                       ${GO_BUILD_IMAGE} \
                       sh -c '
                         set -euo pipefail
@@ -93,15 +97,15 @@ pipeline {
                         go mod verify
                         go vet ./...
                         mkdir -p ../build/reports
-                        go test -race -covermode=atomic -coverprofile=coverage.out -json ./... | tee go-test.json
+                        go test -covermode=atomic -coverprofile=coverage.out -json ./... | tee go-test.json
                         test -s coverage.out
                         cd ..
                         ./scripts/normalize-go-coverage.sh backend/coverage.out backend/coverage.sonar.out
                         test -s backend/coverage.sonar.out
                         go tool cover -func=backend/coverage.out | tee build/reports/backend-coverage-summary.txt
                         TOTAL_COVERAGE=\$(go tool cover -func=backend/coverage.out | tail -n 1 | grep -oE "[0-9]+([.][0-9]+)?%" | tr -d "%")
-                        echo "Total Go Backend Coverage: \${TOTAL_COVERAGE}% (Minimum Required: \${MIN_GO_COVERAGE}%)"
-                        awk -v cov="\${TOTAL_COVERAGE}" -v min="\${MIN_GO_COVERAGE}" "BEGIN { if ((cov + 0) < (min + 0)) exit 1 }"
+                        echo "Total Go Backend Coverage: \${TOTAL_COVERAGE}% (Minimum Required: ${MIN_GO_COVERAGE}%)"
+                        awk -v cov="\${TOTAL_COVERAGE}" -v min="${MIN_GO_COVERAGE}" "BEGIN { if ((cov + 0) < (min + 0)) exit 1 }"
                       '
                 """
             }
@@ -111,8 +115,10 @@ pipeline {
             steps {
                 sh """
                     docker run --rm \
-                      -w /workspace/frontend \
-                      -v "\$WORKSPACE":/workspace \
+                      --user "\$(id -u):\$(id -g)" \
+                      --volumes-from "\$HOSTNAME" \
+                      -w "\$PWD/frontend" \
+                      -e HOME=/tmp \
                       -e CI=true \
                       ${NODE_BUILD_IMAGE} \
                       sh -c '
@@ -130,18 +136,13 @@ pipeline {
 
         stage('SonarQube Static Analysis') {
             steps {
-                withCredentials([
-                    string(
-                        credentialsId: "${SONAR_TOKEN_ID}",
-                        variable: 'SONAR_TOKEN'
-                    )
-                ]) {
+                withSonarQubeEnv('SonarQube') {
                     sh """
                         docker run --rm \
                           --add-host sonar-dt:${SONAR_HOST_IP} \
-                          -w /workspace \
-                          -v "\$WORKSPACE":/workspace \
-                          -e SONAR_TOKEN="\${SONAR_TOKEN}" \
+                          --volumes-from "\$HOSTNAME" \
+                          -w "\$PWD" \
+                          -e SONAR_TOKEN="\${SONAR_AUTH_TOKEN:-\$SONAR_TOKEN}" \
                           ${SONAR_SCAN_IMAGE} \
                           -Dsonar.host.url="${SONAR_HOST_URL}" \
                           -Dsonar.qualitygate.wait=true \

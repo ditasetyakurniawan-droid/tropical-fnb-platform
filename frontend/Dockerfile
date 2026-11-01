@@ -12,12 +12,15 @@ RUN npm run build
 
 # ---- runtime -------------------------------------------------------------
 FROM nginxinc/nginx-unprivileged:stable-alpine
-USER nginx
+USER root
 
 # Copy built assets
 COPY --from=build --chown=nginx:nginx /src/dist /usr/share/nginx/html
 COPY --chown=nginx:nginx nginx.conf /etc/nginx/nginx.conf
-COPY --chown=nginx:nginx --chmod=755 docker/40-runtime-config.sh /docker-entrypoint.d/40-runtime-config.sh
+COPY docker/40-runtime-config.sh /docker-entrypoint.d/40-runtime-config.sh
+RUN chmod 755 /docker-entrypoint.d/40-runtime-config.sh && chown nginx:nginx /docker-entrypoint.d/40-runtime-config.sh
+
+USER nginx
 
 EXPOSE 8080
 CMD ["nginx", "-g", "daemon off;"]

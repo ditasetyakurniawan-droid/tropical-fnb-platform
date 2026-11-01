@@ -6,14 +6,13 @@ WORKDIR /src
 
 # Dependency layer is cached until go.mod/go.sum change.
 COPY go.mod go.sum ./
-RUN --mount=type=cache,target=/go/pkg/mod go mod download
+RUN go mod download
 
 COPY . .
 ARG VERSION=dev
 ARG COMMIT=none
 ENV CGO_ENABLED=0 GOOS=linux
-RUN --mount=type=cache,target=/go/pkg/mod --mount=type=cache,target=/root/.cache/go-build \
-    go build -trimpath -ldflags "-s -w -X main.version=${VERSION} -X main.commit=${COMMIT}" -o /out/api ./cmd/api && \
+RUN go build -trimpath -ldflags "-s -w -X main.version=${VERSION} -X main.commit=${COMMIT}" -o /out/api ./cmd/api && \
     go build -trimpath -ldflags "-s -w" -o /out/migrate ./cmd/migrate
 
 # ---- runtime -------------------------------------------------------------
