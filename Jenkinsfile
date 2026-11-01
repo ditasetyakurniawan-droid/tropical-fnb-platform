@@ -26,7 +26,7 @@ pipeline {
 
         // GitOps Repository & Credentials
         GITOPS_REPO       = 'github.com/ditasetyakurniawan-droid/tropical-fnb-platform-gitops.git'
-        GITOPS_CRED_ID    = 'tropical-jenkins-gitops'
+        GITOPS_CRED_ID    = 'github-credentials-id'
         GITOPS_BRANCH     = 'main'
 
         // Tooling container images
