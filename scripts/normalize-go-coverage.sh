@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
-set -euo pipefail
+#!/bin/sh
+set -eu
 
 # Normalizes Go coverage output by prepending 'backend/' to module paths
 # so SonarQube scanner can match them relative to the repository root.
@@ -7,7 +7,7 @@ set -euo pipefail
 INPUT=${1:-backend/coverage.out}
 OUTPUT=${2:-backend/coverage.sonar.out}
 
-if [[ ! -s "$INPUT" ]]; then
+if [ ! -s "$INPUT" ]; then
   echo "coverage input is missing or empty: $INPUT" >&2
   exit 1
 fi

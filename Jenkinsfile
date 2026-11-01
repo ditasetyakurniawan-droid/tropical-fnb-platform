@@ -100,7 +100,7 @@ pipeline {
                         go test -covermode=atomic -coverprofile=coverage.out -json ./... | tee go-test.json
                         test -s coverage.out
                         cd ..
-                        ./scripts/normalize-go-coverage.sh backend/coverage.out backend/coverage.sonar.out
+                        sh ./scripts/normalize-go-coverage.sh backend/coverage.out backend/coverage.sonar.out
                         test -s backend/coverage.sonar.out
                         go tool cover -func=backend/coverage.out | tee build/reports/backend-coverage-summary.txt
                         TOTAL_COVERAGE=\$(go tool cover -func=backend/coverage.out | tail -n 1 | grep -oE "[0-9]+([.][0-9]+)?%" | tr -d "%")
