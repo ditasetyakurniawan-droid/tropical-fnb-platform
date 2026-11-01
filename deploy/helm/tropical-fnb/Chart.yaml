@@ -1,0 +1,16 @@
+apiVersion: v2
+name: tropical-fnb
+description: Enterprise F&B Management Platform Helm Chart for Tropical Group (Steak House & Garden Resto)
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+keywords:
+  - fnb
+  - pos
+  - erp
+  - golang
+  - react
+maintainers:
+  - name: Tropical Tech Team
+    email: dev@tropicalfnb.local
+icon: https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/utensils-crossed.svg

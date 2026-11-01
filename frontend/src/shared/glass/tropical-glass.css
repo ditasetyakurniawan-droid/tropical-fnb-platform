@@ -1,0 +1,1095 @@
+/*
+ * Tropical F&B ERP — Global Ultra Premium Glassmorphism Design System
+ *
+ * Golden Design Standard: Soft Warm Sage, Dark Forest Green, Frosted Glass,
+ * Cursor-Following Spotlight & Subtle 3D Depth.
+ *
+ * Scoped under `.tropical-glass`, `.inv-glass`, or `html[data-tropical-glass]`.
+ * Unlayered CSS takes precedence over Tailwind v4 utility layers for clean,
+ * consistent visual remapping with zero business logic changes.
+ */
+
+:root,
+.tropical-glass,
+.inv-glass {
+  --inv-bg: #06120f;
+  --inv-panel: #e9efeb;
+  --inv-card: #f4f6f3;
+  --inv-thead: #e5ece7;
+  --inv-border: #cbd5ce;
+  --inv-text: #14201b;
+  --inv-text-2: #33443b;
+  --inv-muted: #4e5f56;
+  --inv-muted-text: #46574f; /* WCAG AAA compliant (>= 7:1) on card surface */
+  --inv-orange: #f28c00;
+  --inv-forest: #0e3b2e;
+  --inv-forest-2: #1b5e48;
+  --inv-sage: #7fb69a;
+  --inv-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  color: var(--inv-text);
+}
+
+/* ───────── Ambient Page Background Canvas ───────── */
+html[data-tropical-glass],
+html[data-tropical-glass] body,
+html[data-tropical-glass] #root,
+html[data-inv-glass],
+html[data-inv-glass] body,
+html[data-inv-glass] #root {
+  background-color: #06120f !important;
+}
+
+html[data-tropical-glass] .fixed.inset-0.z-0.pointer-events-none.overflow-hidden,
+html[data-inv-glass] .fixed.inset-0.z-0.pointer-events-none.overflow-hidden {
+  background-color: #06120f;
+}
+
+html[data-tropical-glass] .fixed.inset-0.z-0.pointer-events-none.overflow-hidden::after,
+html[data-inv-glass] .fixed.inset-0.z-0.pointer-events-none.overflow-hidden::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(120% 90% at 50% 0%, rgba(14, 59, 46, 0.35), rgba(6, 18, 15, 0.72) 70%);
+}
+
+/* ───────── Global Shell Container ───────── */
+.tropical-glass.min-h-dvh,
+.tropical-glass > .min-h-dvh {
+  background-color: transparent !important;
+}
+
+/* ───────── Tailwind Palette Remap Inside Tropical Glass ───────── */
+.tropical-glass .text-slate-950,
+.tropical-glass .text-slate-900,
+.tropical-glass .text-slate-800,
+.inv-glass .text-slate-950,
+.inv-glass .text-slate-900,
+.inv-glass .text-slate-800 {
+  color: var(--inv-text);
+}
+
+.tropical-glass .text-slate-700,
+.tropical-glass .text-slate-600,
+.inv-glass .text-slate-700,
+.inv-glass .text-slate-600 {
+  color: var(--inv-text-2);
+}
+
+.tropical-glass .text-slate-500,
+.tropical-glass .text-slate-400,
+.inv-glass .text-slate-500,
+.inv-glass .text-slate-400 {
+  color: var(--inv-muted-text);
+}
+
+.tropical-glass .hover\:text-slate-600:hover,
+.inv-glass .hover\:text-slate-600:hover {
+  color: var(--inv-text);
+}
+
+.tropical-glass ::placeholder,
+.inv-glass ::placeholder {
+  color: var(--inv-muted);
+  opacity: 1;
+}
+
+.tropical-glass .border-slate-100,
+.tropical-glass .border-slate-200,
+.tropical-glass .border-slate-200\/80,
+.tropical-glass .border-slate-200\/90,
+.inv-glass .border-slate-100,
+.inv-glass .border-slate-200,
+.inv-glass .border-slate-200\/80,
+.inv-glass .border-slate-200\/90 {
+  border-color: var(--inv-border);
+}
+
+.tropical-glass .border-slate-300,
+.inv-glass .border-slate-300 {
+  border-color: #c3cfc8;
+}
+
+.tropical-glass .divide-slate-100 > :not(:last-child),
+.inv-glass .divide-slate-100 > :not(:last-child) {
+  border-color: #dfe7e2;
+}
+
+/* Base Surfaces: Translucent Sage & Frosted Glass */
+.tropical-glass .bg-white,
+.inv-glass .bg-white {
+  background-color: rgba(244, 246, 243, 0.9);
+}
+
+.tropical-glass .bg-white\/95,
+.tropical-glass .bg-white\/90,
+.tropical-glass .bg-white\/85,
+.inv-glass .bg-white\/95,
+.inv-glass .bg-white\/90,
+.inv-glass .bg-white\/85 {
+  background-color: rgba(244, 246, 243, 0.92);
+}
+
+.tropical-glass .bg-slate-50,
+.inv-glass .bg-slate-50 {
+  background-color: rgba(233, 239, 235, 0.78);
+}
+
+.tropical-glass .bg-slate-50\/80,
+.tropical-glass .bg-slate-50\/70,
+.tropical-glass .bg-slate-50\/60,
+.tropical-glass .bg-slate-50\/50,
+.inv-glass .bg-slate-50\/80,
+.inv-glass .bg-slate-50\/70,
+.inv-glass .bg-slate-50\/60,
+.inv-glass .bg-slate-50\/50 {
+  background-color: rgba(233, 239, 235, 0.55);
+}
+
+.tropical-glass .bg-slate-100,
+.tropical-glass .bg-slate-100\/90,
+.tropical-glass .bg-slate-100\/80,
+.inv-glass .bg-slate-100,
+.inv-glass .bg-slate-100\/90,
+.inv-glass .bg-slate-100\/80 {
+  background-color: #e5ece7;
+}
+
+.tropical-glass .bg-slate-200,
+.inv-glass .bg-slate-200 {
+  background-color: #d5ded8;
+}
+
+.tropical-glass .hover\:bg-slate-100:hover,
+.inv-glass .hover\:bg-slate-100:hover {
+  background-color: #dde6e0;
+}
+
+.tropical-glass .hover\:bg-slate-200:hover,
+.inv-glass .hover\:bg-slate-200:hover {
+  background-color: #cfdad3;
+}
+
+.tropical-glass .hover\:bg-white:hover,
+.tropical-glass .focus\:bg-white:focus,
+.inv-glass .hover\:bg-white:hover,
+.inv-glass .focus\:bg-white:focus {
+  background-color: #f8faf7;
+}
+
+/* ───────── Tables (Light Sage Standard by Default) ───────── */
+.tropical-glass thead,
+.inv-glass thead {
+  background-color: var(--inv-thead);
+}
+
+.tropical-glass thead th,
+.inv-glass thead th {
+  color: var(--inv-text-2);
+}
+
+.tropical-glass td.bg-white,
+.tropical-glass tr.bg-white,
+.inv-glass td.bg-white,
+.inv-glass tr.bg-white {
+  background-color: transparent;
+}
+
+.tropical-glass tbody tr:nth-child(odd),
+.inv-glass tbody tr:nth-child(odd) {
+  background-color: transparent;
+}
+
+.tropical-glass tbody tr:nth-child(even),
+.inv-glass tbody tr:nth-child(even) {
+  background-color: rgba(229, 236, 231, 0.5);
+}
+
+.tropical-glass tbody tr,
+.inv-glass tbody tr {
+  transition: background-color 0.18s ease;
+}
+
+.tropical-glass tbody tr:hover,
+.inv-glass tbody tr:hover {
+  background-color: rgba(167, 201, 183, 0.3);
+}
+
+.tropical-glass tbody tr > td:first-child,
+.inv-glass tbody tr > td:first-child {
+  transition: box-shadow 0.18s ease;
+}
+
+.tropical-glass tbody tr:hover > td:first-child,
+.inv-glass tbody tr:hover > td:first-child {
+  box-shadow: inset 3px 0 0 var(--inv-orange);
+}
+
+/* ───────── Tables: Semantic Total & Highlight Rows (P&L Net Profit, etc.) ───────── */
+.tropical-glass tbody tr:is(.bg-emerald-600, .bg-emerald-700, [class*='bg-emerald-6'], [class*='bg-emerald-7'], .bg-brand-600, .bg-brand-700),
+.inv-glass tbody tr:is(.bg-emerald-600, .bg-emerald-700, [class*='bg-emerald-6'], [class*='bg-emerald-7'], .bg-brand-600, .bg-brand-700) {
+  background-color: #059669 !important;
+  background-image: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+  color: #ffffff !important;
+}
+
+.tropical-glass tbody tr:is(.bg-emerald-600, .bg-emerald-700, [class*='bg-emerald-6'], [class*='bg-emerald-7'], .bg-brand-600, .bg-brand-700) td,
+.inv-glass tbody tr:is(.bg-emerald-600, .bg-emerald-700, [class*='bg-emerald-6'], [class*='bg-emerald-7'], .bg-brand-600, .bg-brand-700) td {
+  color: #ffffff !important;
+}
+
+.tropical-glass tbody tr:is(.bg-emerald-600, .bg-emerald-700, [class*='bg-emerald-6'], [class*='bg-emerald-7'], .bg-brand-600, .bg-brand-700) td.text-emerald-100,
+.inv-glass tbody tr:is(.bg-emerald-600, .bg-emerald-700, [class*='bg-emerald-6'], [class*='bg-emerald-7'], .bg-brand-600, .bg-brand-700) td.text-emerald-100 {
+  color: #d1fae5 !important;
+}
+
+/* ───────── Dark Enterprise Tables (CRM Customers, Ledgers, SOP Action Items) ───────── */
+.tropical-glass :is([data-spot='table'], div, section):is([class*='bg-[#0c081c]'], [class*='bg-slate-900'], [class*='bg-slate-950']) thead,
+.inv-glass :is([data-spot='table'], div, section):is([class*='bg-[#0c081c]'], [class*='bg-slate-900'], [class*='bg-slate-950']) thead {
+  background-color: rgba(10, 16, 22, 0.95) !important;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+.tropical-glass :is([data-spot='table'], div, section):is([class*='bg-[#0c081c]'], [class*='bg-slate-900'], [class*='bg-slate-950']) thead th,
+.inv-glass :is([data-spot='table'], div, section):is([class*='bg-[#0c081c]'], [class*='bg-slate-900'], [class*='bg-slate-950']) thead th {
+  color: #e2e8f0 !important;
+  font-weight: 800 !important;
+  background-color: transparent !important;
+}
+
+.tropical-glass :is([data-spot='table'], div, section):is([class*='bg-[#0c081c]'], [class*='bg-slate-900'], [class*='bg-slate-950']) tbody tr:nth-child(even),
+.inv-glass :is([data-spot='table'], div, section):is([class*='bg-[#0c081c]'], [class*='bg-slate-900'], [class*='bg-slate-950']) tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+}
+
+.tropical-glass :is([data-spot='table'], div, section):is([class*='bg-[#0c081c]'], [class*='bg-slate-900'], [class*='bg-slate-950']) tbody tr:nth-child(odd),
+.inv-glass :is([data-spot='table'], div, section):is([class*='bg-[#0c081c]'], [class*='bg-slate-900'], [class*='bg-slate-950']) tbody tr:nth-child(odd) {
+  background-color: transparent !important;
+}
+
+.tropical-glass :is([data-spot='table'], div, section):is([class*='bg-[#0c081c]'], [class*='bg-slate-900'], [class*='bg-slate-950']) tbody tr:hover,
+.inv-glass :is([data-spot='table'], div, section):is([class*='bg-[#0c081c]'], [class*='bg-slate-900'], [class*='bg-slate-950']) tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.09) !important;
+}
+
+.tropical-glass :is([data-spot='table'], div, section):is([class*='bg-[#0c081c]'], [class*='bg-slate-900'], [class*='bg-slate-950']) tbody tr:hover > td:first-child,
+.inv-glass :is([data-spot='table'], div, section):is([class*='bg-[#0c081c]'], [class*='bg-slate-900'], [class*='bg-slate-950']) tbody tr:hover > td:first-child {
+  box-shadow: inset 3px 0 0 #a855f7 !important;
+}
+
+.tropical-glass :is([data-spot='table'], div, section):is([class*='bg-[#0c081c]'], [class*='bg-slate-900'], [class*='bg-slate-950']) tbody td,
+.inv-glass :is([data-spot='table'], div, section):is([class*='bg-[#0c081c]'], [class*='bg-slate-900'], [class*='bg-slate-950']) tbody td {
+  color: #f1f5f9;
+}
+
+/* ───────── Modals & Dialogs ───────── */
+.tropical-glass .fixed.inset-0 > .bg-white,
+.tropical-glass .fixed.inset-0 > div > .bg-white,
+.inv-glass .fixed.inset-0 > .bg-white,
+.inv-glass .fixed.inset-0 > div > .bg-white {
+  background-color: rgba(244, 246, 243, 0.97);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+/* ───────── Glass Base & Spotlights ───────── */
+.tropical-glass [data-spot],
+.inv-glass [data-spot] {
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  --spot-r: 320px;
+  position: relative;
+  isolation: isolate;
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 55%);
+  background-color: rgba(244, 246, 243, 0.9);
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
+  backdrop-filter: blur(14px) saturate(1.15);
+  border-color: rgba(213, 222, 216, 0.95);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    0 1px 2px rgba(6, 18, 15, 0.06),
+    0 10px 28px -12px rgba(6, 18, 15, 0.28);
+  transition:
+    transform 0.45s var(--inv-ease),
+    box-shadow 0.45s var(--inv-ease),
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.tropical-glass [data-spot='panel'],
+.inv-glass [data-spot='panel'] {
+  --spot-r: 560px;
+  background-color: rgba(233, 239, 235, 0.92);
+}
+
+.tropical-glass [data-spot='stat'],
+.inv-glass [data-spot='stat'] {
+  --spot-r: 320px;
+}
+
+.tropical-glass [data-spot='workflow'],
+.inv-glass [data-spot='workflow'] {
+  --spot-r: 260px;
+}
+
+.tropical-glass [data-spot='toolbar'],
+.inv-glass [data-spot='toolbar'] {
+  --spot-r: 420px;
+}
+
+.tropical-glass [data-spot='table'],
+.inv-glass [data-spot='table'] {
+  --spot-r: 520px;
+}
+
+.tropical-glass [data-spot='control'],
+.inv-glass [data-spot='control'] {
+  --spot-r: 160px;
+}
+
+.tropical-glass [data-spot='card'],
+.inv-glass [data-spot='card'] {
+  --spot-r: 300px;
+}
+
+.tropical-glass [data-spot='hero'],
+.inv-glass [data-spot='hero'] {
+  --spot-r: 480px;
+}
+
+/* Spotlight Under Content (Soft Warm Frosted Luminescence, No Blinding Flares) */
+.tropical-glass [data-spot]::after,
+.inv-glass [data-spot]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+  background: radial-gradient(
+    var(--spot-r) circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.22),
+    rgba(160, 200, 176, 0.12) 42%,
+    transparent 72%
+  );
+  transition: opacity 0.65s ease;
+}
+
+/* Tables Spotlight */
+.tropical-glass [data-spot='table']::after,
+.inv-glass [data-spot='table']::after {
+  z-index: 1;
+  background: radial-gradient(
+    var(--spot-r) circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.15),
+    rgba(160, 200, 176, 0.08) 45%,
+    transparent 72%
+  );
+}
+
+/* Lit Border Pseudo Ring */
+.tropical-glass [data-spot]::before,
+.inv-glass [data-spot]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  background: radial-gradient(
+    calc(var(--spot-r) * 0.7) circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.35),
+    rgba(92, 170, 128, 0.25) 55%,
+    transparent 100%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  transition: opacity 0.65s ease;
+}
+
+.tropical-glass [data-spot][data-spot-on]::after,
+.tropical-glass [data-spot][data-spot-on]::before,
+.inv-glass [data-spot][data-spot-on]::after,
+.inv-glass [data-spot][data-spot-on]::before {
+  opacity: 1;
+  transition-duration: 0.25s;
+}
+
+/* ───────── Workflow & Active Tab Cards ───────── */
+.tropical-glass [data-spot='workflow']:not([data-active='true']),
+.inv-glass [data-spot='workflow']:not([data-active='true']) {
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0) 60%);
+  background-color: rgba(244, 246, 243, 0.9);
+  border-color: rgba(213, 222, 216, 0.95);
+}
+
+.tropical-glass [data-spot='workflow']:not([data-active='true']):hover,
+.inv-glass [data-spot='workflow']:not([data-active='true']):hover {
+  border-color: rgba(242, 140, 0, 0.45);
+}
+
+.tropical-glass [data-spot='workflow'][data-active='true'],
+.inv-glass [data-spot='workflow'][data-active='true'] {
+  background-image: linear-gradient(135deg, #f7a12b 0%, #f28c00 55%, #e57f00 100%) !important;
+  background-color: #f28c00 !important;
+  border-color: #d97800 !important;
+  color: var(--inv-text) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    0 14px 32px -14px rgba(242, 140, 0, 0.7);
+}
+
+.tropical-glass [data-spot='workflow'][data-active='true'] :is(div, span, p, h3, h4),
+.inv-glass [data-spot='workflow'][data-active='true'] :is(div, span, p, h3, h4) {
+  color: var(--inv-text);
+}
+
+.tropical-glass [data-spot='workflow'][data-active='true'] svg,
+.inv-glass [data-spot='workflow'][data-active='true'] svg {
+  color: var(--inv-text);
+}
+
+.tropical-glass [data-spot='workflow'][data-active='true'] .p-1\.5,
+.inv-glass [data-spot='workflow'][data-active='true'] .p-1\.5 {
+  background-color: rgba(23, 37, 31, 0.14);
+}
+
+.tropical-glass [data-spot='workflow'][data-active='true'] span.rounded-full,
+.tropical-glass [data-spot='workflow'][data-active='true'] span[class*='rounded'],
+.inv-glass [data-spot='workflow'][data-active='true'] span.rounded-full,
+.inv-glass [data-spot='workflow'][data-active='true'] span[class*='rounded'] {
+  background-color: var(--inv-text);
+  color: #ffe0b0;
+}
+
+.tropical-glass [data-spot='workflow'][data-active='true'] span.rounded-full *,
+.tropical-glass [data-spot='workflow'][data-active='true'] span[class*='rounded'] *,
+.inv-glass [data-spot='workflow'][data-active='true'] span.rounded-full *,
+.inv-glass [data-spot='workflow'][data-active='true'] span[class*='rounded'] * {
+  color: inherit !important;
+}
+
+.tropical-glass [data-spot='workflow'][data-active='true'] .mt-2\.5 :is(div, span, p),
+.inv-glass [data-spot='workflow'][data-active='true'] .mt-2\.5 :is(div, span, p) {
+  color: #2b3b33;
+}
+
+.tropical-glass [data-spot='workflow'][data-active='true'] .mt-2\.5 > :first-child,
+.inv-glass [data-spot='workflow'][data-active='true'] .mt-2\.5 > :first-child {
+  color: var(--inv-text);
+}
+
+/* Selected Active Cards */
+.tropical-glass [data-spot='card'][data-active='true'],
+.inv-glass [data-spot='card'][data-active='true'] {
+  background-image: linear-gradient(135deg, rgba(255, 237, 205, 0.85), rgba(255, 255, 255, 0) 70%) !important;
+  background-color: rgba(255, 244, 224, 0.95) !important;
+  border-color: var(--inv-orange) !important;
+}
+
+/* ───────── Dark Forest Hero Banner ───────── */
+.tropical-glass [data-spot='hero'],
+.inv-glass [data-spot='hero'] {
+  background-image: linear-gradient(135deg, #0a2e24 0%, #0e3b2e 55%, #164e3c 100%) !important;
+  background-color: #0e3b2e !important;
+  border-color: rgba(127, 182, 154, 0.35) !important;
+  color: #f4f6f3 !important;
+}
+
+/* All Hero Banner Headings and Subtext (Prevents dark-on-dark washout) */
+.tropical-glass [data-spot='hero'] h1,
+.tropical-glass [data-spot='hero'] h2,
+.tropical-glass [data-spot='hero'] h3,
+.inv-glass [data-spot='hero'] h1,
+.inv-glass [data-spot='hero'] h2,
+.inv-glass [data-spot='hero'] h3 {
+  color: #ffffff !important;
+}
+
+.tropical-glass [data-spot='hero'] p,
+.inv-glass [data-spot='hero'] p {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.tropical-glass [data-spot='hero'] :is(.text-slate-900, .text-slate-800, .text-slate-700),
+.inv-glass [data-spot='hero'] :is(.text-slate-900, .text-slate-800, .text-slate-700) {
+  color: #ffffff !important;
+}
+
+.tropical-glass [data-spot='hero'] :is(.text-slate-500, .text-slate-400),
+.inv-glass [data-spot='hero'] :is(.text-slate-500, .text-slate-400) {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.tropical-glass [data-spot='hero']::after,
+.inv-glass [data-spot='hero']::after {
+  z-index: 0;
+  background: radial-gradient(
+    var(--spot-r) circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.16),
+    rgba(127, 182, 154, 0.14) 45%,
+    transparent 72%
+  );
+}
+
+/* ───────── Hero Stat Cards (Dark Frosted Emerald Glass) ───────── */
+.tropical-glass [data-spot='hero'] [data-spot='stat'],
+.inv-glass [data-spot='hero'] [data-spot='stat'] {
+  background-color: rgba(5, 18, 14, 0.68) !important;
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02) 65%) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 8px 24px -8px rgba(0, 0, 0, 0.6) !important;
+  color: #ffffff !important;
+}
+
+.tropical-glass [data-spot='hero'] [data-spot='stat']:hover,
+.inv-glass [data-spot='hero'] [data-spot='stat']:hover {
+  background-color: rgba(8, 26, 20, 0.85) !important;
+  border-color: rgba(52, 211, 153, 0.45) !important;
+}
+
+/* Luminous high-contrast typography inside hero stats */
+.tropical-glass [data-spot='hero'] [data-spot='stat'] .text-white,
+.inv-glass [data-spot='hero'] [data-spot='stat'] .text-white {
+  color: #ffffff !important;
+  font-weight: 900;
+}
+
+.tropical-glass [data-spot='hero'] [data-spot='stat'] :is(.text-emerald-200, .text-emerald-300),
+.inv-glass [data-spot='hero'] [data-spot='stat'] :is(.text-emerald-200, .text-emerald-300) {
+  color: #6ee7b7 !important; /* Mint emerald WCAG AAA */
+  font-weight: 700;
+}
+
+.tropical-glass [data-spot='hero'] [data-spot='stat'] :is(.text-amber-200, .text-amber-300),
+.inv-glass [data-spot='hero'] [data-spot='stat'] :is(.text-amber-200, .text-amber-300) {
+  color: #fcd34d !important; /* Golden amber WCAG AAA */
+  font-weight: 700;
+}
+
+.tropical-glass [data-spot='hero'] [data-spot='stat'] :is(.text-purple-200, .text-purple-300),
+.inv-glass [data-spot='hero'] [data-spot='stat'] :is(.text-purple-200, .text-purple-300) {
+  color: #d8b4fe !important; /* Lilac purple WCAG AAA */
+  font-weight: 700;
+}
+
+.tropical-glass [data-spot='hero'] [data-spot='stat'] :is(.text-rose-200, .text-rose-300),
+.inv-glass [data-spot='hero'] [data-spot='stat'] :is(.text-rose-200, .text-rose-300) {
+  color: #fca5a5 !important; /* Coral rose WCAG AAA */
+  font-weight: 700;
+}
+
+.tropical-glass [data-spot='hero'] [data-spot='stat'] :is(.text-teal-200, .text-teal-300),
+.inv-glass [data-spot='hero'] [data-spot='stat'] :is(.text-teal-200, .text-teal-300) {
+  color: #5eead4 !important;
+  font-weight: 700;
+}
+
+.tropical-glass [data-spot='hero'] [data-spot='stat'] :is(.text-blue-200, .text-blue-300),
+.inv-glass [data-spot='hero'] [data-spot='stat'] :is(.text-blue-200, .text-blue-300) {
+  color: #93c5fd !important;
+  font-weight: 700;
+}
+
+.tropical-glass [data-spot='hero'] [data-spot='stat'] [class*='text-\[11px\]'],
+.inv-glass [data-spot='hero'] [data-spot='stat'] [class*='text-\[11px\]'] {
+  color: rgba(255, 255, 255, 0.82) !important;
+  font-weight: 500;
+}
+
+/* Spotlight glow on hero stat cards */
+.tropical-glass [data-spot='hero'] [data-spot='stat']::after,
+.inv-glass [data-spot='hero'] [data-spot='stat']::after {
+  background: radial-gradient(
+    var(--spot-r) circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.22),
+    rgba(52, 211, 153, 0.14) 45%,
+    transparent 72%
+  ) !important;
+}
+
+.tropical-glass [data-spot='hero'] [data-spot='stat']::before,
+.inv-glass [data-spot='hero'] [data-spot='stat']::before {
+  background: radial-gradient(
+    calc(var(--spot-r) * 0.7) circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.8),
+    rgba(52, 211, 153, 0.45) 55%,
+    transparent 100%
+  ) !important;
+}
+
+/* ───────── Toolbars Inside Hero (e.g. MenuRecipePage tab bar) ───────── */
+.tropical-glass [data-spot='hero'] [data-spot='toolbar'],
+.inv-glass [data-spot='hero'] [data-spot='toolbar'] {
+  background-color: rgba(6, 18, 15, 0.6);
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.25) 70%);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* ───────── KDS Operational Ticket Cards ───────── */
+.tropical-glass [data-spot='card'].bg-slate-950,
+.tropical-glass [data-spot='card'].bg-slate-900,
+.inv-glass [data-spot='card'].bg-slate-950,
+.inv-glass [data-spot='card'].bg-slate-900 {
+  background-color: #07130f !important;
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.5) 75%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 12px 30px -8px rgba(0, 0, 0, 0.7) !important;
+  color: #f8fafc !important;
+}
+
+.tropical-glass [data-spot='card'].bg-slate-950 .text-white,
+.inv-glass [data-spot='card'].bg-slate-950 .text-white {
+  color: #ffffff !important;
+}
+
+.tropical-glass [data-spot='card'].bg-slate-950 .text-slate-400,
+.inv-glass [data-spot='card'].bg-slate-950 .text-slate-400 {
+  color: #94a3b8 !important;
+}
+
+.tropical-glass [data-spot='card'].bg-slate-950 .text-slate-200,
+.inv-glass [data-spot='card'].bg-slate-950 .text-slate-200 {
+  color: #e2e8f0 !important;
+}
+
+.tropical-glass [data-spot='card'].bg-slate-950 .text-amber-400,
+.inv-glass [data-spot='card'].bg-slate-950 .text-amber-400 {
+  color: #fbbf24 !important;
+}
+
+.tropical-glass [data-spot='card'].bg-slate-950 .text-emerald-400,
+.inv-glass [data-spot='card'].bg-slate-950 .text-emerald-400 {
+  color: #34d399 !important;
+}
+
+/* KDS "Semua Siap" button high contrast */
+.tropical-glass [data-spot='card'].bg-slate-950 .bg-amber-500\/20,
+.inv-glass [data-spot='card'].bg-slate-950 .bg-amber-500\/20 {
+  background-color: rgba(245, 158, 11, 0.22) !important;
+  color: #fde68a !important;
+  border-color: rgba(245, 158, 11, 0.6) !important;
+  font-weight: 800 !important;
+}
+
+.tropical-glass [data-spot='card'].bg-slate-950 .bg-amber-500\/20:hover,
+.inv-glass [data-spot='card'].bg-slate-950 .bg-amber-500\/20:hover {
+  background-color: #d97706 !important;
+  color: #ffffff !important;
+}
+
+/* ───────── Solid Dark Purple Navigation Toolbars (Reservations & SOP) ───────── */
+.tropical-glass [data-spot='toolbar'].bg-\[\#0c081c\],
+.inv-glass [data-spot='toolbar'].bg-\[\#0c081c\] {
+  background-color: #0c081c !important;
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.4) 75%) !important;
+  border-color: rgba(147, 51, 234, 0.4) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 8px 24px -8px rgba(0, 0, 0, 0.6) !important;
+}
+
+.tropical-glass [data-spot='toolbar'].bg-\[\#0c081c\] button:not(.bg-gradient-to-r),
+.inv-glass [data-spot='toolbar'].bg-\[\#0c081c\] button:not(.bg-gradient-to-r) {
+  color: #c4b5fd !important; /* Soft lilac WCAG AAA contrast */
+}
+
+.tropical-glass [data-spot='toolbar'].bg-\[\#0c081c\] button:not(.bg-gradient-to-r):hover,
+.inv-glass [data-spot='toolbar'].bg-\[\#0c081c\] button:not(.bg-gradient-to-r):hover {
+  color: #ffffff !important;
+  background-color: rgba(147, 51, 234, 0.25) !important;
+}
+
+/* ───────── SOP Checklist Run Cards (SOPQualityPage) ───────── */
+.tropical-glass [data-spot='card'].bg-slate-900,
+.inv-glass [data-spot='card'].bg-slate-900 {
+  background-color: #0a1813 !important;
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.35) 70%) !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  color: #f8fafc !important;
+}
+
+.tropical-glass [data-spot='card'].bg-slate-900 h3,
+.inv-glass [data-spot='card'].bg-slate-900 h3 {
+  color: #ffffff !important;
+}
+
+.tropical-glass [data-spot='card'].bg-slate-900 .text-slate-400,
+.inv-glass [data-spot='card'].bg-slate-900 .text-slate-400 {
+  color: #94a3b8 !important;
+}
+
+.tropical-glass [data-spot='card'].bg-slate-900 .text-slate-300,
+.inv-glass [data-spot='card'].bg-slate-900 .text-slate-300 {
+  color: #e2e8f0 !important;
+}
+
+/* ───────── Dark Sub-boxes inside Cards (TableFloorPlan occupied details) ───────── */
+.tropical-glass .bg-slate-900 .text-slate-400,
+.inv-glass .bg-slate-900 .text-slate-400 {
+  color: #94a3b8 !important;
+}
+
+.tropical-glass .bg-slate-900 .text-slate-200,
+.inv-glass .bg-slate-900 .text-slate-200 {
+  color: #e2e8f0 !important;
+}
+
+.tropical-glass .bg-slate-900 strong.text-white,
+.inv-glass .bg-slate-900 strong.text-white {
+  color: #ffffff !important;
+}
+
+/* ───────── Standard Light Cards Edge Clarity ───────── */
+.tropical-glass [data-spot='card']:not(.bg-slate-950):not(.bg-slate-900),
+.inv-glass [data-spot='card']:not(.bg-slate-950):not(.bg-slate-900) {
+  background-color: rgba(255, 255, 255, 0.94);
+  border-color: #cbd5ce;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 1px 3px rgba(6, 18, 15, 0.08),
+    0 8px 20px -8px rgba(6, 18, 15, 0.16);
+}
+
+/* ───────── Dark Gradient Panels & Cards (SOP Audit Scorecard, CRM Simulator, CRM Voucher Cards) ───────── */
+.tropical-glass :is([data-spot='panel'], [data-spot='card']):is([class*='from-[#'], [class*='from-purple-9'], [class*='from-slate-9']),
+.inv-glass :is([data-spot='panel'], [data-spot='card']):is([class*='from-[#'], [class*='from-purple-9'], [class*='from-slate-9']) {
+  background-color: #0b141a !important;
+  background-image: linear-gradient(135deg, rgba(18, 15, 41, 0.95), rgba(11, 36, 28, 0.95)) !important;
+  border-color: rgba(147, 51, 234, 0.35) !important;
+  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+}
+
+.tropical-glass :is([data-spot='panel'], [data-spot='card']):is([class*='from-[#'], [class*='from-purple-9'], [class*='from-slate-9']) h1,
+.tropical-glass :is([data-spot='panel'], [data-spot='card']):is([class*='from-[#'], [class*='from-purple-9'], [class*='from-slate-9']) h2,
+.tropical-glass :is([data-spot='panel'], [data-spot='card']):is([class*='from-[#'], [class*='from-purple-9'], [class*='from-slate-9']) h3,
+.inv-glass :is([data-spot='panel'], [data-spot='card']):is([class*='from-[#'], [class*='from-purple-9'], [class*='from-slate-9']) h1,
+.inv-glass :is([data-spot='panel'], [data-spot='card']):is([class*='from-[#'], [class*='from-purple-9'], [class*='from-slate-9']) h2,
+.inv-glass :is([data-spot='panel'], [data-spot='card']):is([class*='from-[#'], [class*='from-purple-9'], [class*='from-slate-9']) h3 {
+  color: #ffffff !important;
+  font-weight: 900;
+}
+
+.tropical-glass :is([data-spot='panel'], [data-spot='card']):is([class*='from-[#'], [class*='from-purple-9'], [class*='from-slate-9']) p,
+.inv-glass :is([data-spot='panel'], [data-spot='card']):is([class*='from-[#'], [class*='from-purple-9'], [class*='from-slate-9']) p {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* 4 Pillar Breakdown Boxes inside Audit Scorecard Panel */
+.tropical-glass [data-spot='panel'] :is(.bg-slate-950\/60, .bg-slate-950, .bg-slate-900),
+.inv-glass [data-spot='panel'] :is(.bg-slate-950\/60, .bg-slate-950, .bg-slate-900) {
+  background-color: rgba(6, 14, 12, 0.85) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+}
+
+.tropical-glass [data-spot='panel'] :is(.bg-slate-950\/60, .bg-slate-950, .bg-slate-900) p.text-slate-400,
+.tropical-glass [data-spot='panel'] :is(.bg-slate-950\/60, .bg-slate-950, .bg-slate-900) .text-slate-400,
+.inv-glass [data-spot='panel'] :is(.bg-slate-950\/60, .bg-slate-950, .bg-slate-900) p.text-slate-400,
+.inv-glass [data-spot='panel'] :is(.bg-slate-950\/60, .bg-slate-950, .bg-slate-900) .text-slate-400 {
+  color: #cbd5e1 !important; /* Crisp light gray, clearly readable on dark */
+  font-weight: 700;
+}
+
+/* Action Items Table & Toolbars in SOP Tab 2 & 3 */
+.tropical-glass :is([data-spot='table'], [data-spot='toolbar']):is(.bg-slate-900, [class*='bg-slate-900']),
+.inv-glass :is([data-spot='table'], [data-spot='toolbar']):is(.bg-slate-900, [class*='bg-slate-900']) {
+  background-color: #0c1814 !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  color: #ffffff !important;
+}
+
+.tropical-glass :is([data-spot='table'], [data-spot='toolbar']):is(.bg-slate-900, [class*='bg-slate-900']) h2,
+.tropical-glass :is([data-spot='table'], [data-spot='toolbar']):is(.bg-slate-900, [class*='bg-slate-900']) h3,
+.inv-glass :is([data-spot='table'], [data-spot='toolbar']):is(.bg-slate-900, [class*='bg-slate-900']) h2,
+.inv-glass :is([data-spot='table'], [data-spot='toolbar']):is(.bg-slate-900, [class*='bg-slate-900']) h3 {
+  color: #ffffff !important;
+}
+
+.tropical-glass :is([data-spot='table'], [data-spot='toolbar']):is(.bg-slate-900, [class*='bg-slate-900']) .text-slate-400,
+.inv-glass :is([data-spot='table'], [data-spot='toolbar']):is(.bg-slate-900, [class*='bg-slate-900']) .text-slate-400 {
+  color: #94a3b8 !important;
+}
+
+/* CRM Dark Ledgers & Tables (LoyaltyVouchersPage lines 479 & 807) */
+.tropical-glass [data-spot='table'].bg-\[\#0c081c\],
+.inv-glass [data-spot='table'].bg-\[\#0c081c\] {
+  background-color: #0c081c !important;
+  border-color: rgba(147, 51, 234, 0.4) !important;
+  color: #f8fafc !important;
+}
+
+/* ───────── Universal Button Affordance & Cursor ───────── */
+button:not(:disabled),
+[role='button']:not([aria-disabled='true']),
+summary {
+  cursor: pointer !important;
+}
+
+button:disabled,
+[role='button'][aria-disabled='true'] {
+  cursor: not-allowed !important;
+  opacity: 0.6;
+}
+
+.tropical-glass button,
+.inv-glass button {
+  cursor: pointer;
+  transition: transform 0.2s var(--inv-ease), box-shadow 0.25s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.tropical-glass button:not(:disabled):active,
+.inv-glass button:not(:disabled):active {
+  transform: scale(0.97) !important;
+}
+
+/* Primary buttons with green/emerald/teal background */
+.tropical-glass :is(.bg-emerald-600, .bg-emerald-700, .bg-teal-600, .bg-teal-700, .bg-brand-600, .bg-brand-700):is(button, a),
+.inv-glass :is(.bg-emerald-600, .bg-emerald-700, .bg-teal-600, .bg-teal-700, .bg-brand-600, .bg-brand-700):is(button, a) {
+  color: #ffffff !important;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.28) !important;
+}
+
+.tropical-glass :is(.bg-emerald-600, .bg-emerald-700, .bg-teal-600, .bg-teal-700, .bg-brand-600, .bg-brand-700):is(button, a) svg,
+.inv-glass :is(.bg-emerald-600, .bg-emerald-700, .bg-teal-600, .bg-teal-700, .bg-brand-600, .bg-brand-700):is(button, a) svg {
+  color: #ffffff !important;
+}
+
+/* Purple Action Buttons (Reservations, CRM, SOP) */
+.tropical-glass :is(.bg-purple-600, .bg-purple-700, .bg-indigo-600, .bg-indigo-700):is(button, a),
+.inv-glass :is(.bg-purple-600, .bg-purple-700, .bg-indigo-600, .bg-indigo-700):is(button, a) {
+  color: #ffffff !important;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.28) !important;
+}
+
+.tropical-glass :is(.bg-purple-600, .bg-purple-700, .bg-indigo-600, .bg-indigo-700):is(button, a) svg,
+.inv-glass :is(.bg-purple-600, .bg-purple-700, .bg-indigo-600, .bg-indigo-700):is(button, a) svg {
+  color: #ffffff !important;
+}
+
+/* Blue Action Buttons (Reservations, POS) */
+.tropical-glass :is(.bg-blue-600, .bg-blue-700, [class*='bg-blue-6']):is(button, a),
+.inv-glass :is(.bg-blue-600, .bg-blue-700, [class*='bg-blue-6']):is(button, a) {
+  color: #ffffff !important;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.28) !important;
+}
+
+.tropical-glass :is(.bg-blue-600, .bg-blue-700, [class*='bg-blue-6']):is(button, a) svg,
+.inv-glass :is(.bg-blue-600, .bg-blue-700, [class*='bg-blue-6']):is(button, a) svg {
+  color: #ffffff !important;
+}
+
+/* Secondary / Action Buttons in Dark Containers (Unmistakable Button Affordance) */
+.tropical-glass :is([data-spot='table'], [data-spot='card'], [data-spot='panel']):is(.bg-slate-900, .bg-slate-950, [class*='bg-slate-9'], [class*='bg-[#0c081c]']) button:not(.bg-white):not([class*='bg-emerald-6']):not([class*='bg-amber']):not([class*='bg-purple-6']):not([class*='bg-indigo-6']):not([class*='bg-blue-6']),
+.inv-glass :is([data-spot='table'], [data-spot='card'], [data-spot='panel']):is(.bg-slate-900, .bg-slate-950, [class*='bg-slate-9'], [class*='bg-[#0c081c]']) button:not(.bg-white):not([class*='bg-emerald-6']):not([class*='bg-amber']):not([class*='bg-purple-6']):not([class*='bg-indigo-6']):not([class*='bg-blue-6']) {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #f1f5f9 !important;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.tropical-glass :is([data-spot='table'], [data-spot='card'], [data-spot='panel']):is(.bg-slate-900, .bg-slate-950, [class*='bg-slate-9'], [class*='bg-[#0c081c]']) button:not(.bg-white):not([class*='bg-emerald-6']):not([class*='bg-amber']):not([class*='bg-purple-6']):not([class*='bg-indigo-6']):not([class*='bg-blue-6']):hover,
+.inv-glass :is([data-spot='table'], [data-spot='card'], [data-spot='panel']):is(.bg-slate-900, .bg-slate-950, [class*='bg-slate-9'], [class*='bg-[#0c081c]']) button:not(.bg-white):not([class*='bg-emerald-6']):not([class*='bg-amber']):not([class*='bg-purple-6']):not([class*='bg-indigo-6']):not([class*='bg-blue-6']):hover {
+  background-color: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #ffffff !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
+}
+
+/* Amber / Orange Action Buttons */
+.tropical-glass :is(.bg-amber-600, .bg-amber-500, .bg-orange-600):is(button, a),
+.inv-glass :is(.bg-amber-600, .bg-amber-500, .bg-orange-600):is(button, a) {
+  background-image: linear-gradient(135deg, #f7a12b, #f28c00);
+  background-color: #f28c00;
+  color: #14201b !important;
+  font-weight: 800 !important;
+}
+
+.tropical-glass :is(.bg-amber-600, .bg-amber-500, .bg-orange-600):is(button, a) svg,
+.inv-glass :is(.bg-amber-600, .bg-amber-500, .bg-orange-600):is(button, a) svg {
+  color: #14201b !important;
+}
+
+/* Outline Buttons on Hero Banners */
+.tropical-glass [data-spot='hero'] button[class*='border-white'],
+.tropical-glass [data-spot='hero'] button[class*='bg-white/10'],
+.tropical-glass [data-spot='hero'] button[class*='bg-white/12'],
+.inv-glass [data-spot='hero'] button[class*='border-white'],
+.inv-glass [data-spot='hero'] button[class*='bg-white/10'],
+.inv-glass [data-spot='hero'] button[class*='bg-white/12'] {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  color: #ffffff !important;
+  font-weight: 700;
+}
+
+.tropical-glass [data-spot='hero'] button[class*='border-white']:hover,
+.tropical-glass [data-spot='hero'] button[class*='bg-white/10']:hover,
+.tropical-glass [data-spot='hero'] button[class*='bg-white/12']:hover,
+.inv-glass [data-spot='hero'] button[class*='border-white']:hover,
+.inv-glass [data-spot='hero'] button[class*='bg-white/10']:hover,
+.inv-glass [data-spot='hero'] button[class*='bg-white/12']:hover {
+  background-color: rgba(255, 255, 255, 0.22) !important;
+  color: #ffffff !important;
+}
+
+/* Danger / Rose Action Buttons */
+.tropical-glass :is(.bg-rose-600, .bg-rose-700, .bg-red-600):is(button, a),
+.inv-glass :is(.bg-rose-600, .bg-rose-700, .bg-red-600):is(button, a) {
+  color: #ffffff !important;
+  font-weight: 700;
+}
+
+.tropical-glass .from-amber-600.text-white,
+.inv-glass .from-amber-600.text-white {
+  background-image: linear-gradient(135deg, #f7a12b, #f28c00);
+  color: var(--inv-text);
+}
+
+/* ───────── Focus Accessibility ───────── */
+.tropical-glass :is(button, a, select, input, textarea, [tabindex]):focus-visible,
+.inv-glass :is(button, a, select, input, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--inv-forest);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px rgba(242, 140, 0, 0.28);
+}
+
+html[data-tropical-glass] aside[aria-label='Navigasi utama'] a:focus-visible,
+html[data-inv-glass] aside[aria-label='Navigasi utama'] a:focus-visible {
+  outline: 2px solid var(--inv-orange);
+  outline-offset: 1px;
+}
+
+/* ───────── Sidebar: Premium Glass Highlight & Pointer Spotlight ───────── */
+aside[aria-label='Navigasi utama'] nav a {
+  isolation: isolate;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+}
+
+aside[aria-label='Navigasi utama'] nav a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+  background: radial-gradient(
+    120px circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.16),
+    rgba(127, 182, 154, 0.1) 45%,
+    transparent 75%
+  );
+  transition: opacity 0.6s ease;
+}
+
+aside[aria-label='Navigasi utama'] nav a[data-spot-on]::after {
+  opacity: 1;
+  transition-duration: 0.25s;
+}
+
+aside[aria-label='Navigasi utama'] nav a[aria-current='page'],
+aside[aria-label='Navigasi utama'] nav a.active {
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03) 60%) !important;
+  background-color: rgba(14, 59, 46, 0.8) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 0 0 1px rgba(242, 140, 0, 0.28),
+    0 8px 20px -10px rgba(0, 0, 0, 0.5) !important;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+aside[aria-label='Navigasi utama'] nav a[aria-current='page'] > span[aria-hidden='true'],
+aside[aria-label='Navigasi utama'] nav a.active > span[aria-hidden='true'] {
+  background: var(--inv-orange) !important;
+  box-shadow: 0 0 12px rgba(242, 140, 0, 0.7) !important;
+}
+
+/* ───────── Top Navbar Glass Harmony ───────── */
+header.sticky.top-0 {
+  background-color: rgba(233, 239, 235, 0.88) !important;
+  border-bottom-color: var(--inv-border) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  backdrop-filter: blur(16px) saturate(1.2);
+}
+
+/* ───────── Motion & 3D Hover Interactions ───────── */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .tropical-glass [data-spot='stat']:hover,
+  .inv-glass [data-spot='stat']:hover {
+    transform: perspective(900px) translate3d(0, -3px, 0) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.85),
+      0 2px 4px rgba(6, 18, 15, 0.08),
+      0 22px 40px -16px rgba(6, 18, 15, 0.42);
+    transition-duration: 0.18s, 0.45s, 0.3s, 0.3s;
+  }
+
+  .tropical-glass [data-spot='card']:hover,
+  .inv-glass [data-spot='card']:hover {
+    transform: perspective(900px) translate3d(0, -2px, 0) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.75),
+      0 14px 28px -12px rgba(6, 18, 15, 0.35);
+  }
+
+  .tropical-glass [data-spot='workflow']:hover,
+  .inv-glass [data-spot='workflow']:hover {
+    transform: translate3d(0, -2px, 0);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.8),
+      0 16px 30px -14px rgba(6, 18, 15, 0.4);
+  }
+
+  .tropical-glass button:not([data-spot]):not(:disabled):hover,
+  .inv-glass button:not([data-spot]):not(:disabled):hover {
+    transform: translate3d(0, -1px, 0);
+    box-shadow: 0 8px 18px -8px rgba(6, 18, 15, 0.35);
+  }
+
+  .tropical-glass .bg-amber-600:not(:disabled):hover,
+  .inv-glass .bg-amber-600:not(:disabled):hover {
+    box-shadow: 0 10px 22px -8px rgba(242, 140, 0, 0.65);
+  }
+
+  .tropical-glass :is(.bg-emerald-600, .bg-indigo-600):not(:disabled):hover,
+  .inv-glass :is(.bg-emerald-600, .bg-indigo-600):not(:disabled):hover {
+    box-shadow: 0 10px 22px -8px rgba(14, 59, 46, 0.6);
+  }
+}
+
+/* Touch & Reduced Motion Fallbacks */
+@media (hover: none), (pointer: coarse) {
+  .tropical-glass [data-spot]::after,
+  .tropical-glass [data-spot]::before,
+  .inv-glass [data-spot]::after,
+  .inv-glass [data-spot]::before {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tropical-glass [data-spot],
+  .tropical-glass button,
+  .tropical-glass tbody tr,
+  .inv-glass [data-spot],
+  .inv-glass button,
+  .inv-glass tbody tr {
+    transition: none !important;
+    transform: none !important;
+  }
+}

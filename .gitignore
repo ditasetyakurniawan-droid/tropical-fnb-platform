@@ -1,0 +1,34 @@
+# ---- OS / editor ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+
+# ---- Secrets / local env (NEVER commit) ----
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ---- Backend (Go) ----
+backend/bin/
+backend/coverage.out
+backend/coverage.html
+
+# ---- Frontend (Node) ----
+frontend/node_modules/
+frontend/dist/
+frontend/coverage/
+frontend/*.tsbuildinfo
+frontend/.vite/
+
+# ---- Capacitor native projects are generated; keep source of truth in capacitor.config.ts ----
+# (ios/ and android/ will be committed once the POS wrapper is created)
+
+# ---- Helm ----
+deploy/helm/**/charts/*.tgz
+deploy/helm/**/values.local.yaml
+deploy/helm/**/values.*.secret.yaml

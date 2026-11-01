@@ -1,0 +1,45 @@
+{{- if .Values.externalDatabase.enabled }}
+# External Headless Service and EndpointSlice mapping PostgreSQL on node 192.168.100.70 (DB-dt)
+# Mirroring the proven zabisa-platform db-dt architecture pattern.
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.externalDatabase.serviceName | default "db-tropical" }}
+  labels:
+    {{- include "tropical-fnb.labels" . | nindent 4 }}
+    app.kubernetes.io/component: database
+spec:
+  clusterIP: None
+  ports:
+    - name: postgres
+      protocol: TCP
+      port: {{ .Values.externalDatabase.port | default 5432 }}
+      targetPort: {{ .Values.externalDatabase.port | default 5432 }}
+    - name: metrics
+      protocol: TCP
+      port: {{ .Values.externalDatabase.metricsPort | default 9187 }}
+      targetPort: {{ .Values.externalDatabase.metricsPort | default 9187 }}
+---
+apiVersion: discovery.k8s.io/v1
+kind: EndpointSlice
+metadata:
+  name: {{ .Values.externalDatabase.serviceName | default "db-tropical" }}-external
+  labels:
+    kubernetes.io/service-name: {{ .Values.externalDatabase.serviceName | default "db-tropical" }}
+    endpointslice.kubernetes.io/managed-by: {{ .Release.Name }}
+    {{- include "tropical-fnb.labels" . | nindent 4 }}
+    app.kubernetes.io/component: database
+addressType: IPv4
+ports:
+  - name: postgres
+    protocol: TCP
+    port: {{ .Values.externalDatabase.port | default 5432 }}
+  - name: metrics
+    protocol: TCP
+    port: {{ .Values.externalDatabase.metricsPort | default 9187 }}
+endpoints:
+  - addresses:
+      - {{ .Values.externalDatabase.host | default "192.168.100.70" | quote }}
+    conditions:
+      ready: true
+{{- end }}

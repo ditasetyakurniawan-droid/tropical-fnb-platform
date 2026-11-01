@@ -1,0 +1,4 @@
+/*
+ * Inventory Glass Stylesheet — Forwards to the unified Global Tropical Glass Design System
+ */
+@import '../../shared/glass/tropical-glass.css';

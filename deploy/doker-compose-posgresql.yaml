@@ -1,0 +1,57 @@
+# ==============================================================================
+# Tropical F&B Platform — Dedicated Production PostgreSQL Stack
+# Node: 192.168.100.70 (DB-dt)
+# Target File: doker-compose-posgresql.yaml
+# ==============================================================================
+name: tropical-database
+
+services:
+  # ----------------------------------------------------------------------------
+  # 1. PostgreSQL 18 Engine
+  # ----------------------------------------------------------------------------
+  postgres:
+    image: postgres:18-alpine
+    container_name: tropical-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: fnb_user
+      POSTGRES_PASSWORD: TropicalFnb2026!
+      POSTGRES_DB: tropical_fnb_db
+      TZ: Asia/Jakarta
+      PGTZ: Asia/Jakarta
+    ports:
+      # Port 5432 dibuka ke subnet LAN agar dapat diakses oleh Pod Kubernetes
+      - "0.0.0.0:5432:5432"
+    volumes:
+      # Persistensi data langsung di direktori lokal home node 70 (./data)
+      - ./data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fnb_user -d tropical_fnb_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    networks:
+      - tropical_db_net
+
+  # ----------------------------------------------------------------------------
+  # 2. PostgreSQL Prometheus Exporter (Metrik Observabilitas ke Cluster K8s)
+  # ----------------------------------------------------------------------------
+  postgres-exporter:
+    image: prometheuscommunity/postgres-exporter:v0.16.0
+    container_name: tropical-postgres-exporter
+    restart: unless-stopped
+    environment:
+      DATA_SOURCE_NAME: "postgresql://fnb_user:TropicalFnb2026!@postgres:5432/tropical_fnb_db?sslmode=disable"
+    ports:
+      - "0.0.0.0:9187:9187"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - tropical_db_net
+
+networks:
+  tropical_db_net:
+    name: tropical_db_net
+    driver: bridge

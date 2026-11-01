@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tropical-fnb
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: tropical-fnb
+    app.kubernetes.io/part-of: tropical-fnb-platform
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    # GitOps source pointing to Helm Chart directory
+    repoURL: https://github.com/ditasetyakurniawan-droid/tropical-fnb-platform-gitops.git
+    targetRevision: main
+    path: helm/tropical-fnb
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: tropical-fnb
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+      - RespectIgnoreDifferences=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
